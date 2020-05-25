@@ -1,27 +1,44 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import firebase from "./FirebaseConfig";
 
 class Card extends Component {
-    state = {
-        product_id: ""
-    }
-    onClickId=(e) =>{
-        // e.preventDefault()
-        this.setState({
-            product_id:e.target.dataset.id
-        })
-        console.log(this.state.product_id)
-        localStorage.setItem("product_id", JSON.stringify(this.state.product_id))
+    SaveToFireStore(){
+        var user=firebase.auth().currentUser
+        if(user){
+            var userid=user.uid
+            console.log(userid)
+            const {name, description, price}=this.props
+            const docRef=firebase.firestore().collection("booking")
+    
+            docRef.add({
+                userid,
+                name,
+                description,
+                price,
+                status:"isbooking"
+            }).then(res=>{
+                console.log(res.id)
+                localStorage.setItem("product_id", res.id)
+                window.location.replace("http://localhost:3000/tid")
+            })
+
+            
+            
+        }else{
+            alert("Vänligen logga in först för att boka en tid.")
+        }
+
     }
     render() {
-        const { id, name, description, image, price } = this.props
+        const { name, description, image, price } = this.props
         return (
                 <div className={"card"}>
                     <img src={image} className={"card-img-top"} alt={name} />
                     <div className={"card-body"}>
                         <h5 className={"card-title"}>{name}</h5>
                         <p className={"card-text"}>{description}</p>
-                        <Link to="/tid"><button onClick={this.onClickId} data-id ={id} className={"btn btn-boka"}>Boka</button></Link>
+                        <Link to=""><button onClick={this.SaveToFireStore.bind(this)} className={"btn btn-boka"}>Boka</button></Link>
                         <span>{price} kr</span>
                     </div>
                 </div>

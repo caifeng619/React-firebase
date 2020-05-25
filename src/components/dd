@@ -1,0 +1,29 @@
+{this.state.isChecked ? "cancel" :"hidecancel"}
+
+{this.state.isChecked ? "sidebar" : "sidebar showsidebar"}
+
+{this.state.isChecked ? "btn" :"hidebtn"}
+
+cross.addEventListener('click', (e)=>{
+    e.stopPropagation();
+let id=e.target.parentElement.getAttribute('data-id');
+db.collection("cafes").doc(id).delete();
+})
+
+db.collection('cafes').where('city', '==', 'London').get().then(booking=>{
+    booking.docs.forEach(doc=>{
+        renderCafe(doc);
+    })
+})
+
+
+db.collection('cafes').orderBy('name').get().then(booking=>{
+    booking.docs.forEach(doc=>{
+        renderCafe(doc);
+    })
+})
+
+db.collection('cafes').orderBy('city').onSnapshot(snapshot=>{
+    let changes = snapshot.docChanges();
+    console.log(changes)
+})

@@ -3,10 +3,6 @@ import "../../style/_row.scss";
 
 
 class Row extends Component {
-    // state={
-    //     update:false,
-    //     delete:false
-    // }
     updateProduct=()=>{
         const {id, name, description, price}= this.props
         localStorage.setItem("id", id)

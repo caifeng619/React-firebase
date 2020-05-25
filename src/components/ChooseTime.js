@@ -3,21 +3,30 @@ import Step from "./Step";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../style/_choosetime.scss";
-import {Link} from "react-router-dom"
+import firebase from "./FirebaseConfig";
 
 class ChooseTime extends Component {
-    state={
-        datum:"",
-        time:""
-    }
 
-    onSubmitToForm(e){
-        e.preventDefalut();
-        this.setState({
-            datum:e.target.elements.datum.value,
-            time:e.target.elements.tid.value
-        })
-        localStorage.setItem("tid", this.state)
+    onSubmitSaveTime=(e)=>{
+        e.preventDefault();
+        var user=firebase.auth().currentUser
+        if(user){
+            var userid=user.uid
+            console.log(userid)
+            const db=firebase.firestore()
+            var product_id=localStorage.getItem("product_id");
+            console.log(product_id);
+            const docRef=db.collection("booking").doc(product_id)
+            docRef.update({
+                date:e.target.elements.date.value,
+                time:e.target.elements.time.value
+            }).then(res=>{
+                console.log(res)
+                window.location.replace("http://localhost:3000/form")
+            })
+        }else{
+            console.log("error")
+        }
     }
     render(){
         return (
@@ -25,14 +34,14 @@ class ChooseTime extends Component {
                 <Header/>
                 <Step />
                 <div className="choosetime-container">
-                    <form onSubmit={this.onSubmitToForm.bind(this)}>
+                    <form onSubmit={this.onSubmitSaveTime}>
                         <h3>Välj datum och en tid!</h3>  
                         <p>Du kan ändra eller avboka din tid utan kostnad online.</p>
                         <label>Datum</label>
-                        <input type="date" id="datum" name="datum" value="2020-04-30"/><br/>
+                        <input type="date" id="date" name="date" defaultValue="2020-05-30"/><br/>
                         <label>Tid</label>
-                        <input type="text" id="tid" name="tid"></input>
-                        <Link to="/form"><button className="btn btn-boka">Gå vidare</button></Link>
+                        <input type="time" id="time" name="time"></input>
+                        <button className="btn btn-boka">Gå vidare</button>
                     </form>
                 </div>
                 <Footer/>

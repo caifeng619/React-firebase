@@ -2,20 +2,18 @@ $mainblue:#13dceb;
 $mainpink:#db9ad5;
 $maincolor:#609fd6;
 
-.loginform-container{
+.userlogin-container{
     font-family: 'Emilys Candy', cursive;
-    max-width: 800px;
-    margin: 2rem auto;
     display: flex;
-    flex-direction: column;
+    max-width: 1440px;
+    margin: 3rem auto;
     justify-content: center;
-    align-items: center;
     .error{
         color: red;
     }
     p{
-        text-align: center;
         margin-top: 2rem;
+        margin-left: 1rem;
     }
     svg{
         width: 2rem;
@@ -28,31 +26,43 @@ $maincolor:#609fd6;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 2px solid $mainpink;
-        padding: 2rem;
+        padding: 1rem;
+        margin-right: 1rem;
         input{
             margin-top: .5rem;
             padding: .5rem 1rem;
             width: 100%;
         }
         button{
-            margin-top: 1rem;
+            margin: .5rem 0;
             padding: .5rem 1rem;
             border: none;
             width: 100%;
             background-color: $mainblue;
         }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: smaller;
+            align-self: flex-end;
+        }
+        a:hover{
+            color: $maincolor;
+        }
     }
     .btn-change{
-        margin-top: 1rem;
-        padding: .5rem 1rem;
+        padding: .5rem 0;
         border: none;
         background-color: white;
+        width: 20rem;
+        margin: 1rem auto;
     }
-    #reset-form{
-        border: none;
-        max-width: 480px;
+    .or-before, .or-after{
+        width: .5rem;
+        height: 180px;
+        border-right: 2px solid lightgray;
     }
-    
-    
+    .firebase-ui-container{
+        max-width: 360px;
+    }
 }

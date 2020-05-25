@@ -32,6 +32,7 @@ class App extends Component {
                         product =>
                             <Card
                                 key={product.id}
+                                docId={product.id}
                                 name={product.name}
                                 description={product.description}
                                 image={"http://localhost:1337"+product.image.url}

@@ -1,35 +1,51 @@
 import React from "react";
 import "../style/_kontaktform.scss";
-import { Link } from "react-router-dom";
 import Step from "./Step";
 import Header from "./Header";
 import Footer from "./Footer";
+import firebase from "./FirebaseConfig";
 
 class KontaktForm extends React.Component {
-    state = {
-        name: "",
-        appointmentTime: "",
-        telefon: ""
-    }
 
-    handleOnChangeName = (e) => {
-        this.setState({
-            name: e.target.value
-        })
-    }
-    handleOnChangeTime = (e) => {
-        this.setState({
-            appointmentTime: e.target.value
-        })
-    }
-    handleOnChangeTel = (e) => {
-        this.setState({
-            telefon: e.target.value
-        })
+    state={
+        telefon:""
     }
     handleOnSubmit = e => {
-        e.preventDefault()
-        localStorage.setItem("state", JSON.stringify(this.state))
+        e.preventDefault();
+        var user=firebase.auth().currentUser
+        if(user){
+            var userid=user.uid
+            console.log(userid)
+            const db=firebase.firestore()
+            var product_id=localStorage.getItem("product_id");
+            console.log(product_id);
+            const docRef=db.collection("booking").doc(product_id)
+            docRef.update({
+                firstName :e.target.elements.firstname.value,
+                familyName :e.target.elements.familyname.value,
+                phoneNumber:e.target.elements.telefon.value,
+                status:"booked"
+            }).then(res=>{
+                console.log(res)
+                window.location.replace("http://localhost:3000/success")
+            })
+            // docRef.get().then(booking=>{
+            //     this.setState({
+            //         telefon:booking.data().phoneNumber
+            //     },()=>
+            //     {
+            //         console.log(this.state.telefon)
+            //         user.updateProfile({
+            //             phoneNumber:this.state.telefon
+            //         })
+            //         console.log(user.phoneNumber)
+            //     })
+            // })
+           
+        }else{
+            console.log("error")
+        }
+        
     }
 
     render() {
@@ -40,10 +56,10 @@ class KontaktForm extends React.Component {
                 <div className={"form-container"}>
                     <form onSubmit={this.handleOnSubmit}>
                         <h3>Fyll forulär för att boka en tid!</h3>
-                        <input type={"text"} name={"name"} onChange={this.handleOnChangeName} placeholder={"ange ditt name"}></input><br />
-                        <input type={"text"} name={"appointmentTime"} onChange={this.handleOnChangeTime} placeholder={"ange önskat datum"}></input><br />
-                        <input type={"number"} name={"telefon"} onChange={this.handleOnChangeTel} placeholder={"ange telefon nummer"}></input><br />
-                        <button type={"submit"} className={"btn btn-boka"}><Link to="/bokningar">Boka</Link></button>
+                        <input type="text" name="firstname"  placeholder="ange ditt förnamn"></input><br />
+                        <input type="text" name="familyname"  placeholder="ange ditt efternamn"></input><br />
+                        <input type="number" name="telefon" placeholder="ange telefon nummer"></input><br />
+                        <button type="submit" className="btn btn-boka">Boka</button>
                     </form>
                 </div>
                 <Footer/>

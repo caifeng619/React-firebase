@@ -4,7 +4,7 @@ class Logout extends Component {
 
     componentDidMount() {
         localStorage.clear();
-        window.location.replace("http://localhost:3000/adminsida");
+        window.location.replace("http://localhost:3000");
     }
     
     render() { 

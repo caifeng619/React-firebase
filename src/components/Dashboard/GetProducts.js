@@ -81,7 +81,7 @@ class GetProducts extends Component {
           : <div className="page-container">
                 <AdminHeader />
                 <div className="table-container table-responsive-sm">
-                '<table className="table">
+                <table className="table">
                   <thead className="thead-light">
                     <tr>
                       <th scope="col">Id</th>
@@ -105,7 +105,7 @@ class GetProducts extends Component {
                       />
                     ))}
                   </tbody>
-                </table>'
+                </table>
                 </div>
                 <div className="pagination">
                           <button id="first" onClick={this.firstPage.bind(this)}>First</button>

@@ -31,7 +31,7 @@ class AdminLogin extends Component {
       console.log('User profile', response.data.user);
       console.log('User token', response.data.jwt);
       let role=response.data.user.role.name
-      if(role==="Public"){
+      if(role!=="Admin"){
         this.setState({
           error2:"Du har registrerats nu. Men du saknar behörighet för att komma in till admin dashboard."
         })
@@ -60,14 +60,15 @@ class AdminLogin extends Component {
       console.log('User profile', response.data.user);
       console.log('User token', response.data.jwt);
       let role=response.data.user.role.name
-      if(role==="Public"){
-        this.setState({
-          error1:"Du är inte admin"
-        })
-      }else{
+      if(role==="Admin"){
         let token=response.data.jwt
         let username=response.data.user.username
         this.props.callbackFromParent(token, username, role)
+        console.log(role)
+      }else{
+        this.setState({
+          error1:"Du är inte admin"
+        })
       }
     })
     .catch(error => {
@@ -101,7 +102,7 @@ class AdminLogin extends Component {
               </form>
         </div>
         }
-        <button className="btn-change" onClick={this.changeState.bind(this)}>Do not have an account</button>
+        <button className="btn-change" onClick={this.changeState.bind(this)}>Do not have an account?</button>
       </div>
     );
   }

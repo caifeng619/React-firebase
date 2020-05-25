@@ -5,7 +5,7 @@ $maincolor:#609fd6;
 .navbar{
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 3;
     font-family: 'Emilys Candy', cursive;
     background-color:white;
     display: flex;
@@ -13,12 +13,13 @@ $maincolor:#609fd6;
     box-shadow: 1px 1px 5px $mainpink;
     img{
         width: 8rem;
+        height: 70px;
     }
     .nav-links{
         display: flex;
         justify-content: space-evenly;
         list-style-type: none;
-        width:50%;
+        width:60%;
         height: 100%;
         margin-left: auto;
         margin-bottom: 0;
@@ -46,7 +47,7 @@ $maincolor:#609fd6;
             flex-direction: column;
             position: fixed;
             top: 0;
-            z-index: 2;
+            z-index: 4;
             height: 100%;
             width:100%;
             background-color: $mainpink;
