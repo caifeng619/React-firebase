@@ -29,19 +29,6 @@ class KontaktForm extends React.Component {
                 console.log(res)
                 window.location.replace("http://localhost:3000/success")
             })
-            // docRef.get().then(booking=>{
-            //     this.setState({
-            //         telefon:booking.data().phoneNumber
-            //     },()=>
-            //     {
-            //         console.log(this.state.telefon)
-            //         user.updateProfile({
-            //             phoneNumber:this.state.telefon
-            //         })
-            //         console.log(user.phoneNumber)
-            //     })
-            // })
-           
         }else{
             console.log("error")
         }

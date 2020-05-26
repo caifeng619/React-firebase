@@ -6,7 +6,7 @@ $maincolor:#609fd6;
     font-family: 'Emilys Candy', cursive;
     display: flex;
     max-width: 1440px;
-    margin: 3rem auto;
+    margin: 2rem auto;
     justify-content: center;
     .error{
         color: red;
@@ -65,4 +65,23 @@ $maincolor:#609fd6;
     .firebase-ui-container{
         max-width: 360px;
     }
+}
+
+
+/* responsive break piont */
+@media screen and (max-width:786px){
+    .userlogin-container{
+        flex-direction: column;
+        .or-container{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .or-before, .or-after{
+            width: 8rem;
+            height: .7rem;
+            border-bottom: 2px solid lightgray;
+            border-right: 0;
+        }
+    }
+
 }

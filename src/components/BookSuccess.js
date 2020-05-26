@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/_kontaktform.scss";
+import "../style/_booksucess.scss";
 import Step from "./Step";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -33,8 +33,10 @@ class KontaktForm extends React.Component {
             <div>
                 <Header/>
                 <Step />
-                <div>
-                     Nu har du bokat en tid för {this.state.name} on {this.state.date} at {this.state.time}
+                <div className="booksuccess-container">
+                     <h4>Du har bokat en tid för </h4>
+                     <h4>{this.state.name} </h4>
+                     <h5>{this.state.time}, {this.state.date} </h5>
                 </div>
                 <Footer/>
             </div>

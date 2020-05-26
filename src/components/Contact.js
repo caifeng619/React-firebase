@@ -41,7 +41,7 @@ class Contact extends Component {
                                     <br/>
                                 <h4><a href="tel:+46712345678" title="08-000-00-000">+460123456789</a></h4>
                                 <p><span><a href="https://drive.google.com/open?id=1URoOVgFhTwjYvLQN8IHy7lKJaxKsADV2&usp=sharing"
-                                            target="_blank" rel="noopener">• Adress: Tulegatan 41, 113 53 Stockholm</a></span></p>
+                                          rel="noopener">• Adress: Tulegatan 41, 113 53 Stockholm</a></span></p>
                             </div>
                             <div className="col-sm-6">
                                 <form className="kontaktForm" onSubmit={this.onSubmitContactForm.bind(this)}>

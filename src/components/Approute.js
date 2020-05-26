@@ -14,7 +14,7 @@ import DeleteProduct from  "./Dashboard/DeleteProduct";
 import FirebaseTest from "./FirebaseTest";
 import UserPage from "./AuthUser/UserPage";
 import UserLogout from "./AuthUser/UserLogout";
-import ResetPassword from "./AuthUser/ResetPassword";
+import ChangePassword from "./AuthUser/ChangePassword";
 import UserProfile from "./AuthUser/UserProfile";
 import Contact from "./Contact";
 import MinaBokningar from  "./AuthUser/MinaBokningar";
@@ -22,6 +22,8 @@ import UserInfo from "./AuthUser/UserInfo";
 import DeleteAccount from "./AuthUser/DeleteAccount";
 import AddImage from "./AuthUser/AddImage";
 import BookSuccess from "./BookSuccess";
+import ResetPassword from "./ResetPassword";
+import ReBook from "./Rebook";
 
 
 class Approute extends Component {
@@ -43,9 +45,11 @@ class Approute extends Component {
                     <Route path="/logoutuser" component={UserLogout} exact></Route>
                     <Route path="/fire" component={FirebaseTest} exact></Route>
                     <Route path="/reset" component={ResetPassword} exact></Route>
+                    <Route path="/rebook" component={ReBook} exact></Route>
                     <Route path="/profile" component={UserProfile} exact></Route>
                     <Route path="/contact" component={Contact} exact></Route>
                     <Route path="/success" component={BookSuccess} exact></Route>
+                    <Route path="/profile/changepassword" component={ChangePassword} exact></Route>
                     <Route path="/profile/minabokningar" component={MinaBokningar} exact></Route>
                     <Route path="/profile/userinfo" component={UserInfo} exact></Route>
                     <Route path="/profile/deleteaccount" component={DeleteAccount} exact></Route>

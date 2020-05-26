@@ -13,6 +13,7 @@ class BokCard extends Component {
             this.setState({
                 displayName
             })
+            localStorage.setItem("product_id", this.props.id)
         }else{console.log("error")}
     }
     deleteBookingConfirm(){
@@ -33,11 +34,10 @@ render(){
                     <h5 className={"card-title"}>{price} kr</h5>
                     <p className={"card-text"}>{datum} {tid}</p>
                     <p className={"card-text"}>{phoneNumber}</p>
-                    <button className={"btn btn-boka"}><Link to="/form">Boka om</Link></button><br />
+                    <button className={"btn btn-boka"}><Link to="/rebook">Boka om</Link></button><br />
                     <button className={"btn btn-boka"} onClick={this.deleteBookingConfirm.bind(this)}>Avboka</button>
                 </div>
             </div>
-            <div className="delete-form-container"></div>
             </React.Fragment>
         
     )

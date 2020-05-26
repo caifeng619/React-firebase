@@ -11,11 +11,9 @@ class MinaBokningar extends Component {
     bookings: [],
   };
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(
-      function (user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           var userid = user.uid;
-
           const db = firebase.firestore();
           db.collection("booking")
             .where("userid", "==", userid)
@@ -42,11 +40,11 @@ class MinaBokningar extends Component {
       <React.Fragment>
         <Header />
         <Nav />
-        <section className="bokningar-container">
-          {this.state.bookings.length < 1 ? (
-            <div>Du har ingen bokning.</div>
-          ) : (
-            <React.Fragment>
+        <section >
+          <div className="bokningar-container">
+          {this.state.bookings.length < 1 
+          ? <div>Du har ingen bokning.</div>
+          :<React.Fragment>
               {this.state.bookings.map((booking) => (
                 <BokCard
                   key={booking.doc.id}
@@ -58,8 +56,8 @@ class MinaBokningar extends Component {
                   phoneNumber={booking.doc.data().phoneNumber}
                 />
               ))}
-            </React.Fragment>
-          )}
+            </React.Fragment>}
+          </div>
         </section>
         <Footer />
       </React.Fragment>

@@ -10,6 +10,10 @@ class Header extends React.Component {
     hamMenu(){
         this.setState(prevState=>({menu:!prevState.menu}))
     }
+    minaBokningarDisable(e){
+        e.preventDefault();
+        alert("Du har inte loggat in!")
+    }
     render() {
         const {menu} =this.state
         const loggedIn=null || localStorage.getItem("displayname")
@@ -18,10 +22,16 @@ class Header extends React.Component {
                 <Link to="/"><img src={require('../images/logo.png')} alt={"logo"} /></Link>
                 <ul className={menu ? "open nav-links" : "nav-links"}>
                     <li><Link to="/"><FaCalendarPlus /> Boka tid</Link></li>
-                    <li><Link to="/profile/minabokningar"><FaCalendarAlt /> Mina bokningar</Link></li>
+                    
                     {!loggedIn ? 
-                    <li><Link to="/userpage"><FaUserAlt /> Login</Link></li>
-                    :<li><Link to="/profile/userinfo"><FaUserAlt /> Mitt konto</Link></li>}
+                    <React.Fragment>
+                        <li onClick={this.minaBokningarDisable.bind(this)}><Link to="/"><FaCalendarAlt /> Mina bokningar</Link></li>
+                        <li><Link to="/userpage"><FaUserAlt /> Login</Link></li>
+                    </React.Fragment>
+                    :<React.Fragment>
+                         <li><Link to="/profile/minabokningar"><FaCalendarAlt /> Mina bokningar</Link></li>
+                        <li><Link to="/profile/userinfo"><FaUserAlt /> Mitt konto</Link></li>
+                    </React.Fragment>}
                     <li><Link to="/logoutuser"><FaUserAlt /> Logout</Link></li>
                     <li><Link to="/contact"><FaEnvelopeSquare /> Kontakta Oss</Link></li>
                     <li><Link to="/adminsida"><FaUserAlt /> Admin</Link></li>

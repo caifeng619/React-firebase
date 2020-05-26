@@ -7,14 +7,14 @@ import Footer from "../Footer";
 class DeleteAccount extends Component {
     deleteAccount() {
         var user = firebase.auth().currentUser;
-        user
-          .delete()
+        user.delete()
           .then(function () {
             localStorage.clear();
             window.location.reload(false);
+            window.location.replace("http://localhost:3000/")
           })
           .catch(function (error) {
-            // An error happened.
+            window.alert(error.message)
           });
       }
     render() { 
@@ -23,8 +23,10 @@ class DeleteAccount extends Component {
             <Header/>
             <Nav/>
             <section>
+                <div className="deleteaccount-container">
                 <p>Är du säker att du ska radera ditt konto?</p>
-                 <button onClick={this.deleteAccount.bind(this)}>Redera konto</button>
+                 <button className="btn-delete" onClick={this.deleteAccount.bind(this)}>Redera konto</button>
+                </div>
             </section>
             <Footer/>
           </React.Fragment>

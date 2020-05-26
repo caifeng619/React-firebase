@@ -3,10 +3,11 @@ $mainpink:#db9ad5;
 $maincolor:#609fd6;
 
 .sidebar{
-    position: fixed;
-    left: -250px;
+    position: absolute;
+    left: 0px;
     width: 250px;
-    transition: all .5s ease;
+    background-color: white;
+    z-index: 2;
     header{
         color: white;
         font-size: 22px;
@@ -40,10 +41,11 @@ label .btn, label .cancel{
     cursor: pointer;
     background:#b859ae;
     border-radius: 3px;
+    visibility: hidden;
 }
 label .btn{
-    left: 20px;
-    top: 100px;
+    left: 15px;
+    top: 90px;
     font-size: 35px;
     color: white;
     padding: 5px 5px;
@@ -53,13 +55,10 @@ label .cancel{
     color: white;
     z-index: 2;
     left: -205px;
-    top: 105px;
+    top: 95px;
     font-size: 35px;
     padding: 5px 5px;
     transition: all .5s ease;
-}
-.showsidebar{
-    left: 0;
 }
 label .hidebtn{
     left: 250px;
@@ -72,7 +71,7 @@ label .hidecancel{
 
 section{
     margin-left: 250px;
-    min-height: 60vh;
+    min-height: 70vh;
     h4{
         text-align: center;
         margin-top: 3rem;
@@ -84,11 +83,60 @@ section{
             width: 100%;
             margin-bottom: 1rem;
             padding: .3rem .5rem;
-            border: 0.05px solid lightgrey;
+            border: 0.5px solid lightgrey;
+            border-radius: 10px;
         }
         .btn{
             width: 100%;
             background-color: $mainblue;
         }
     }
+    .btn-delete{
+        border: none;
+        padding: .2rem 1rem;
+        margin-top: 1rem;
+        border-radius: 15px;
+        width: 100%;
+    }
+    .deleteaccount-container{
+        width: 300px;
+        margin: 3rem auto;
+        input{
+            margin-top: 1rem;
+            padding: .3rem 1rem;
+            width: 100%;
+            border: 1px solid lightgrey;
+            border-radius: 10px;
+        }
+    }
+}
+
+/* responsive break piont */
+@media screen and (max-width:786px){
+    label .btn, label .cancel{
+        visibility: visible;
+        cursor: pointer;
+    }
+    .sidebar{
+        left: -250px;
+    }
+    .showsidebar{
+        left: 0;
+    }
+    section{
+        min-height: 80vh;
+        margin-left: 0;
+        margin-top: 4rem;
+        #change-password-form{
+            border: none;
+            max-width: 480px;
+            h5{
+                margin-top: 4rem;
+            }
+        }
+        .bokningar-container{
+            margin-top: 4rem;
+        }
+    }
+    
 }

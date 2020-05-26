@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "../../style/_loginform.scss";
-import firebase from "../FirebaseConfig";
-import Header from "../Header";
-import Footer from "../Footer";
+import "../style/_loginform.scss";
+import firebase from "./FirebaseConfig";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 class ResetPassword extends Component {
@@ -13,14 +13,19 @@ class ResetPassword extends Component {
     var auth = firebase.auth();
     var emailAddress = e.target.elements.resetEmail.value;
 
-    auth
+    if(emailAddress != ""){
+      auth
       .sendPasswordResetEmail(emailAddress)
       .then(function () {
-        // Email sent.
+        window.alert("E-post har redan skickats till dig.")
       })
       .catch(function (error) {
-        // An error happened.
+        console.log(error.message)
       });
+    }else{
+      window.alert("Vänligen skriva din e postadress först.")
+    }
+    
   }
 
   render() {

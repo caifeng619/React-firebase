@@ -4,7 +4,8 @@ $maincolor:#609fd6;
 
 .loginform-container{
     font-family: 'Emilys Candy', cursive;
-    max-width: 800px;
+    max-width: 600px;
+    min-height: 50vh;
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
@@ -51,8 +52,6 @@ $maincolor:#609fd6;
     }
     #reset-form{
         border: none;
-        max-width: 480px;
     }
-    
     
 }

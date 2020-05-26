@@ -12,26 +12,46 @@ class UserInfo extends Component {
     phoneNumber:""
   }
   componentDidMount() {
-    firebase.auth().onAuthStateChanged((user)=>{
+    firebase.auth().onAuthStateChanged(function(user){
       if(user){
         this.setState({
           name:user.displayName,
           email:user.email,
-          phoneNumber:user.phoneNumber,
         })
       }
-    })
+    }.bind(this));
   }
   onSubmitSaveUserinfo(e){
+    e.preventDefault()
     var user = firebase.auth().currentUser
-    console.log(user)
+    console.log(user.password)
+    let email=e.target.elements.email.value
+    let password=e.target.elements.password.value
+
+
     user.updateProfile({
       displayName:e.target.elements.name.value,
-      email:e.target.elements.email.value,
-      phoneNumber:e.target.elements.tel.value,
-    })
+    }).then(function() {
+      console.log("Update displayname successful.")
+    }).catch(function(error) {
+      console.log(error)
+    });
+
+    
+    const credential=firebase.auth.EmailAuthProvider.credential(user.email, password)
+    user.reauthenticateWithCredential(credential).then(function() {
+        user.updateEmail(email).then(function(){
+          console.log("update email successful.")
+        }).catch(function(error) {
+          console.log(error)
+        });
+    }).catch(function(error) {
+      console.log(error)
+    });
+
   }
   render() {
+    const{displayName}=this.props
     return (
       <div>
         <Header/>
@@ -40,11 +60,11 @@ class UserInfo extends Component {
           <h4>Mina uppgifter</h4>
           <form onSubmit={this.onSubmitSaveUserinfo.bind(this)}>
             <label htmlFor="name">Avändaresnamn</label>
-            <input type="text" name="name" defaultValue={this.state.name}/><br/>
+            <input type="text" name="name" defaultValue={displayName || this.state.name}/><br/>
             <label htmlFor="name">E-postadress</label>
             <input type="text" name="email" defaultValue={this.state.email}/><br/>
-            <label htmlFor="name">Telefone Nummer</label>
-            <input type="tel" name="tel" defaultValue={this.state.phoneNumber}/><br/>
+            <label>Fyll in lösenord för att spara dina ändringar!</label>
+            <input type="password" name="password"></input>
             <button className="btn">Spara</button>
           </form>
         </section>

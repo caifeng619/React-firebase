@@ -8,6 +8,7 @@ import Nav from "../Nav";
 import {Router} from "@reach/router";
 import MinaBokningar from "./MinaBokningar";
 import AddImage from "./AddImage";
+import ChangePassword from "./ChangePassword";
 
 class UserProfile extends Component {
 
@@ -19,6 +20,7 @@ class UserProfile extends Component {
           <Nav/>
           <Router>
             <UserInfo path="/profile/userinfo"/>
+            <ChangePassword path="/profile/changepassword"/>
             <MinaBokningar path="/profile/minabokningar"/>
             <AddImage path="/profile/addimage"/>
             <DeleteAccount path="/profile/deleteaccount"/>

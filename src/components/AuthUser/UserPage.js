@@ -4,10 +4,12 @@ import firebase from "../FirebaseConfig";
 import UserInfo from './UserInfo';
 
 class UserPage extends Component {
+    
     state = { 
         useremail:"",
         displayName:""
     }
+
     componentDidMount(){
         firebase.auth().onAuthStateChanged((user)=>{
             if(user){
@@ -16,22 +18,17 @@ class UserPage extends Component {
                     useremail:user.email,
                     displayName:user.displayName
                 })
-                localStorage.setItem("displayname", this.state.displayName)
+                localStorage.setItem("displayname", user.displayName)
             }        
         })
     }
     
     getDisplayname(userName){
-        console.log("displayname", userName)
         var user = firebase.auth().currentUser
-
             user.updateProfile({
                 displayName:userName
             }).then(()=>
             this.setState({displayName:user.displayName}))
-            
-            console.log(user.displayName)
-        
     }
 
     render() { 
