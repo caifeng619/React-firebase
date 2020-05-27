@@ -86,8 +86,8 @@ class UserLogin extends Component {
                 <p className="error">{this.state.error1}</p>
                 <form className="login-form"  onSubmit={this.onSubmitLogin.bind(this)}>
                   <FaUserAlt /><br />
-                  <input type="email" name="email" /><br />
-                  <input type="password" name="password" /><br />
+                  <input type="email" name="email" placeholder="E-postadress"/><br />
+                  <input type="password" name="password" placeholder="lösenord"/><br />
                   <button>Logga in</button>
                   <Link to="reset">Glömt lösenordet?</Link>
                   <button className="btn-change" onClick={this.changeState.bind(this)}>
@@ -99,9 +99,9 @@ class UserLogin extends Component {
                 <p className="error">{this.state.error2}</p>
                 <form  className="register-form"  onSubmit={this.onSubmitRegister.bind(this)}>
                   <FaUserAlt />
-                  <input type="text" name="username" /><br />
-                  <input type="email" name="email" /><br />
-                  <input type="password" name="password" /><br />
+                  <input type="text" name="username" placeholder="Användares namn"/><br />
+                  <input type="email" name="email" placeholder="E-postadress"/><br />
+                  <input type="password" name="password" placeholder="lösenord"/><br />
                   <button>Registrera</button>
                   <button  className="btn-change" onClick={this.changeState.bind(this)}> Do not have an account?</button>
                   <br />

@@ -9,7 +9,7 @@ class UserInfo extends Component {
   state={
     name:"",
     email:"",
-    phoneNumber:""
+    emailVerified:false
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged(function(user){
@@ -17,6 +17,7 @@ class UserInfo extends Component {
         this.setState({
           name:user.displayName,
           email:user.email,
+          emailVerified:user.emailVerified
         })
       }
     }.bind(this));
@@ -63,6 +64,7 @@ class UserInfo extends Component {
             <input type="text" name="name" defaultValue={displayName || this.state.name}/><br/>
             <label htmlFor="name">E-postadress</label>
             <input type="text" name="email" defaultValue={this.state.email}/><br/>
+            <p>Epost verifierad: {this.state.emailVerified ? "True" : "False"}</p>
             <label>Fyll in lösenord för att spara dina ändringar!</label>
             <input type="password" name="password"></input>
             <button className="btn">Spara</button>
